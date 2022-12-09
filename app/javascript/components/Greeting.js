@@ -5,7 +5,7 @@ import { fetchGreeting } from '../redux/reducers/greeting/greeting';
 
 export default function Greeting() {
   const dispatch = useDispatch();
-  const greeting = useSelector((state) => state.greetings.greetings.greeting);
+  const greeting = useSelector((state) => state.greetings);
   // console.log(greeting)
   return (
     <div>
