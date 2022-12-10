@@ -1,18 +1,18 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { fetchGreeting } from '../redux/reducers/greeting/greeting';
+import { useSelector, useDispatch } from 'react-redux'
+import { getGreetings } from '../redux/greetings/greetingsSlice';
 
+const Greeting = () => {
+    const dispatch = useDispatch();
+    const greetings = useSelector(state => state.greetings.greetings);
+    const status = useSelector(state => state.greetings.status);
 
-export default function Greeting() {
-  const dispatch = useDispatch();
-  const greeting = useSelector((state) => state.greetings);
-  // console.log(greeting)
-  return (
-    <div>
-      <h1>{greeting}</h1>
-      <button onClick={() => dispatch(fetchGreeting())} type="button">
-        Click to get greeting
-      </button>
-    </div>
-  );
+    return (
+        <div>
+            <h1>Here Are Your Greetings</h1>
+            {status === 'succeeded' && greetings.map(greeting => <div key={greeting.id}>{<h2> {greeting.greeting}</h2>}</div>)}
+            <button onClick={() => dispatch(getGreetings())}>Click to get Messages</button>
+        </div>
+    )
 }
+export default Greeting
